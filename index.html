@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>QA & Release Execution Plan — One‑Pager</title>
+  <style>
+    :root{
+      --bg: #0b0f14;
+      --card: #121823;
+      --ink: #eaf2ff;
+      --muted: #a9b7d1;
+      --accent: #58a6ff;
+      --accent-2: #22c55e;
+      --warn: #f59e0b;
+      --shadow: 0 10px 30px rgba(0,0,0,.35);
+      --radius: 16px;
+    }
+    html, body { height: 100%; }
+    body{
+      margin:0; font: 15px/1.5 system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, "Helvetica Neue", Arial, "Noto Sans", "Apple Color Emoji", "Segoe UI Emoji";
+      color: var(--ink); background: radial-gradient(1200px 800px at 10% -10%, #1a2332 0%, var(--bg) 50%), var(--bg);
+    }
+    .page{ max-width:1100px; margin:40px auto; padding:0 20px 80px; }
+    header{
+      display:flex; gap:18px; align-items:center; justify-content:space-between; margin-bottom:22px;
+    }
+    .title{
+      display:flex; flex-direction:column; gap:6px;
+    }
+    h1{ margin:0; font-weight:700; letter-spacing:.3px; font-size:28px; }
+    .subtitle{ color: var(--muted); font-size:14px; }
+    .cta-bar{ display:flex; gap:10px; flex-wrap:wrap; }
+    button, .chip{
+      border:1px solid rgba(255,255,255,.1); background: rgba(255,255,255,.04); color:var(--ink);
+      padding:10px 14px; border-radius:12px; cursor:pointer; box-shadow: var(--shadow);
+    }
+    button:hover{ background: rgba(255,255,255,.08); }
+    .grid{ display:grid; gap:18px; grid-template-columns: repeat(12, 1fr); }
+    .card{
+      grid-column: span 12; background: linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,.02));
+      border:1px solid rgba(255,255,255,.08); border-radius: var(--radius); padding:18px 18px; box-shadow: var(--shadow);
+    }
+    @media (min-width: 880px){
+      .col-4{ grid-column: span 4; }
+      .col-6{ grid-column: span 6; }
+      .col-8{ grid-column: span 8; }
+    }
+    h2{ margin:0 0 12px; font-size:18px; letter-spacing:.2px; }
+    p{ margin: 8px 0; color: var(--muted); }
+    ul{ margin: 8px 0 0 18px; color: var(--muted); }
+    .badge{ display:inline-flex; align-items:center; gap:8px; padding:6px 10px; border-radius:999px; background: rgba(88,166,255,.15); color:#cde4ff; border:1px solid rgba(88,166,255,.3); font-size:12px; }
+    .kpi{ display:flex; gap:16px; align-items:center; }
+    .kpi strong{ font-size:22px; }
+    .divider{ height:1px; background: linear-gradient(90deg, rgba(255,255,255,.05), rgba(255,255,255,.12), rgba(255,255,255,.05)); margin:10px 0 2px; }
+    .flow{ display:flex; flex-wrap:wrap; gap:10px; align-items:center; color:var(--muted); }
+    .step{ background: #0f1520; border:1px solid rgba(255,255,255,.08); padding:10px 12px; border-radius:10px; }
+    .arrow{ opacity:.6 }
+    .list-tight li{ margin:6px 0; }
+    .timeline{ display:grid; gap:10px; }
+    .tl-item{ display:flex; gap:12px; }
+    .tl-dot{ width:12px; height:12px; border-radius:50%; background: var(--accent); margin-top:6px; box-shadow:0 0 0 3px rgba(88,166,255,.15); }
+    .tl-body{ flex:1 }
+    .muted{ color: var(--muted); }
+    .pill{ display:inline-block; padding:4px 10px; border-radius:999px; background: rgba(34,197,94,.12); color:#c7f9d4; border:1px solid rgba(34,197,94,.35); font-size:12px; }
+    .warn{ background: rgba(245,158,11,.12); color:#ffe1ad; border-color: rgba(245,158,11,.35); }
+    .danger{ background: rgba(239,68,68,.12); color:#ffd1d1; border-color: rgba(239,68,68,.35); }
+    .two-col{ columns: 2; column-gap: 18px; }
+    @media (max-width: 720px){ .two-col{ columns:1; } }
+    footer{ margin-top: 22px; display:flex; justify-content:space-between; align-items:center; color:var(--muted); font-size:12px; }
+    .small{ font-size:12px; }
+    .mono{ font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace; font-size:12px; }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <header>
+      <div class="title">
+        <h1>QA & Release Execution Plan — One‑Pager</h1>
+        <div class="subtitle">Web + Mobile • Jira as source of truth • BrowserStack for execution • Manual → Automation handover</div>
+      </div>
+      <div class="cta-bar">
+        <button onclick="window.print()" title="Print or Save as PDF">🖨️ Print / Save PDF</button>
+      </div>
+    </header>
+
+    <section class="grid">
+      <div class="card col-6">
+        <h2>👥 Team Structure</h2>
+        <ul class="list-tight">
+          <li><strong>2 Interns</strong> (09:00–17:00): Manual testing of new builds & features in <span class="mono">BrowserStack</span>.</li>
+          <li><strong>Lead QA</strong> (17:30–20:30): Bug validation, coverage checks, closes daily cycles, guides interns.</li>
+          <li><strong>Owner (You)</strong>: Evening spot‑checks, monitor progress, approve handover → automation.</li>
+        </ul>
+        <div class="divider"></div>
+        <div class="kpi"><span class="badge">📈 Goal: predictable, bug‑free releases</span></div>
+      </div>
+
+      <div class="card col-6">
+        <h2>🧭 Principles & Tools</h2>
+        <ul class="list-tight">
+          <li><strong>Jira</strong> = single source of truth (test cases, defects, release scope).</li>
+          <li>Interns log defects <em>inside BrowserStack test cases</em> → Lead QA validates → QA files/links issues in Jira.</li>
+          <li>Each build must ship with <strong>version + release notes</strong>.</li>
+          <li>Test data & whitelisting are <strong>pre‑documented by Dev</strong> (PAN, Aadhaar, phones, emails, cards, IPs).</li>
+        </ul>
+      </div>
+
+      <div class="card col-12">
+        <h2>🔄 Workflow & Process</h2>
+        <div class="timeline">
+          <div class="tl-item">
+            <div class="tl-dot"></div>
+            <div class="tl-body">
+              <strong>1) Development → Staging</strong>
+              <div class="muted">Dev pushes fixes/features to staging with release notes & test data pack.</div>
+            </div>
+          </div>
+          <div class="tl-item">
+            <div class="tl-dot"></div>
+            <div class="tl-body">
+              <strong>2) Daytime Manual Testing</strong>
+              <div class="muted">Interns execute test cases on BrowserStack; attach evidence (screens, videos). Issues are drafted in BS cases.</div>
+            </div>
+          </div>
+          <div class="tl-item">
+            <div class="tl-dot"></div>
+            <div class="tl-body">
+              <strong>3) Evening Validation</strong>
+              <div class="muted">Lead QA reviews evidence, deduplicates, applies severity, and promotes validated bugs into Jira.</div>
+            </div>
+          </div>
+          <div class="tl-item">
+            <div class="tl-dot"></div>
+            <div class="tl-body">
+              <strong>4) Fix → Verify Loop</strong>
+              <div class="muted">Dev fixes → new staging build → QA verifies → close/resurface as needed. Daily bug triage with Dev.</div>
+            </div>
+          </div>
+          <div class="tl-item">
+            <div class="tl-dot"></div>
+            <div class="tl-body">
+              <strong>5) Automation Handover</strong> <span class="pill">Ready for Automation</span>
+              <div class="muted">Stable, manually‑passed flows are moved to the automation backlog and scripted by interns; Lead QA/Owner monitors.</div>
+            </div>
+          </div>
+          <div class="tl-item">
+            <div class="tl-dot"></div>
+            <div class="tl-body">
+              <strong>6) Release Candidate → Go/No‑Go</strong>
+              <div class="muted">Run smoke + nightly regression. All <span class="pill danger">Blockers/Criticals = 0</span>. Proceed to prod when stable.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card col-12">
+        <h2>🧩 Bug Flow (Operating Model)</h2>
+        <div class="flow">
+          <div class="step">Interns (BrowserStack cases)</div>
+          <div class="arrow">→</div>
+          <div class="step">Lead QA (validate & severity)</div>
+          <div class="arrow">→</div>
+          <div class="step">Jira (ticket & ownership)</div>
+          <div class="arrow">→</div>
+          <div class="step">Dev Fix</div>
+          <div class="arrow">→</div>
+          <div class="step">Staging Build</div>
+          <div class="arrow">→</div>
+          <div class="step">QA Verify</div>
+          <div class="arrow">→</div>
+          <div class="step">Close</div>
+        </div>
+        <p class="small muted" style="margin-top:10px">Severity levels: Blocker • Critical • Major • Minor. Evidence required for all defects (steps, expected vs actual, logs/screens/video).</p>
+      </div>
+
+      <div class="card col-4">
+        <h2>📅 Daily Rhythm</h2>
+        <ul class="list-tight">
+          <li><strong>09:00–17:00</strong> — Interns execute test cases & draft defects in BS.</li>
+          <li><strong>17:30–20:30</strong> — Lead QA validates, promotes to Jira, checks coverage.</li>
+          <li><strong>Evening</strong> — Owner spot‑checks & approves automation handover.</li>
+        </ul>
+      </div>
+
+      <div class="card col-4">
+        <h2>✅ Quality Gates</h2>
+        <ul class="list-tight">
+          <li>Build installs & smoke pass on web + mobile.</li>
+          <li>All Blocker/Critical defects resolved & verified.</li>
+          <li>Regression pass ≥ 95% on stable suite.</li>
+          <li>Release notes updated & shared.</li>
+        </ul>
+      </div>
+
+      <div class="card col-4">
+        <h2>💰 Investment & Value</h2>
+        <ul class="list-tight">
+          <li>Interns: ₹10,000 total (₹5k × 2).</li>
+          <li>Lead QA: ₹12,000.</li>
+        </ul>
+        <div class="divider"></div>
+        <p class="muted">Outcome: Structured manual + automation coverage → higher release confidence with lean cost.</p>
+      </div>
+
+      <div class="card col-12">
+        <h2>🚀 Future Direction (Self‑Executing QA)</h2>
+        <div class="two-col">
+          <ul class="list-tight">
+            <li>Grow stable automation of core flows; nightly CI runs (web + mobile).</li>
+            <li>Shift ownership to Engineering + QA — no external PM required.</li>
+            <li>Defect taxonomy, flake triage, and test data bank maintained in repo.</li>
+          </ul>
+          <ul class="list-tight">
+            <li>Definition of Ready & Done templates for Jira issues.</li>
+            <li>Release scorecard per sprint: defects, coverage, MTTR, pass‑rate.</li>
+            <li>Continuous improvement via weekly retro (10–15 mins).</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <footer>
+      <div>One‑pager summary</div>
+    </footer>
+  </div>
+</body>
+</html>
